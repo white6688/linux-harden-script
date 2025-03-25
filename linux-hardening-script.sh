@@ -1,10 +1,7 @@
 #!/bin/bash
 #
 # Linux 安全加固脚本
-# 作者: Claude
-# 版本: 1.3
-# 日期: 2025-03-24
-#
+
 # 描述: 此脚本执行多种安全加固措施，增强 Linux 系统的安全性。
 # 使用方法: 以 root 用户身份运行 ./linux_security_hardening.sh
 
