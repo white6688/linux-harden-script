@@ -948,14 +948,14 @@ secure_accounts() {
     done
     
     # 确保 root 用户是唯一的 UID 为 0 的用户
-    for user in $(awk -F: '($3 == 0) {print $1 }' /etc/passwd); do
-        if [ "$user" != "root" ]; then
+    for user in $(awk -F: '($3 == 0) {print $1}' /etc/passwd); do 
+        if [ "$user" != "root" ]; then 
             log "${RED}警告: 发现 UID 为 0 的非 root 用户: $user${NC}"
-            # 更改 UID 为非特权 UID
-            usermod -u 1010 "$user" 2>/dev/null
-            log "已修改 $user 的 UID 为 1010"
-        fi
-    done
+            # 强制删除用户及其关联文件 
+            userdel -rf "$user" 2>/dev/null 
+            log "已强制删除高危用户: $user"
+        fi 
+    done 
     
     # 检查空密码账户
     for user in $(cat /etc/shadow | awk -F: '($2 == "" ) {print $1}'); do
